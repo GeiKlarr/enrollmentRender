@@ -43,7 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             if(authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){
                 defaultUrl = "/admin/dashboard";
             } else if(authorities.stream().anyMatch(a-> a.getAuthority().equals("ROLE_USER"))){
-                defaultUrl = "/Home";
+                defaultUrl = "//springapplication-render.onrender.com/login";
             }else {
                 defaultUrl = "/login";
             }
