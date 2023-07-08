@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="hhtp://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+
+<section layout:fragment="body" class="bg-light py-5 border-bottom">
+
+    <div class="container px-5 my-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bolder">Enroll your children</h2>
+        <p class="lead mb-0">Select an option below</p>
+      </div>
+      <div class="row gx-5 justify-content-center">
+        <!-- Pricing card free-->
+        <div class="col-lg-6 col-xl-4">
+          <div class="card mb-5 mb-xl-0">
+            <div class="card-body p-5">
+              <div class="small text-uppercase fw-bold text-muted"></div>
+              <div class="mb-3">
+                <span class="display-4 fw-bold">Kinder</span>
+                <span class="text-muted"></span>
+              </div>
+              <img class="img-fluid rounded-3 mb-3" src="/kinder.png" alt="..." />
+              <div class="d-grid"><a class="btn btn-outline-primary" th:href="@{/user/enroll/newKinder}">Enroll Kinder</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+          <div class="card mb-5 mb-xl-0">
+            <div class="card-body p-5">
+              <div class="small text-uppercase fw-bold text-muted"></div>
+              <div class="mb-3">
+                <span class="display-4 fw-bold">Nursery</span>
+              </div>
+              <img class="img-fluid rounded-3 mb-3" src="/prep.png" alt="..." />
+              <div class="d-grid"><a class="btn btn-outline-primary" th:href="@{/user/enroll/newNursery}">Enroll Nursery</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+          <div class="card mb-5 mb-xl-0">
+            <div class="card-body p-5">
+              <div class="small text-uppercase fw-bold text-muted"></div>
+              <div class="mb-3">
+                <span class="display-4 fw-bold">Tutorial</span>
+              </div>
+              <img class="img-fluid rounded-3 mb-3" src="/nursery.png" alt="..." />
+              <div class="d-grid"><a class="btn btn-outline-primary" th:href="@{/user/enroll/newPrep}">Enroll Tutorial</a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>

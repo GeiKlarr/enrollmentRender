@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="hhtp://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<section layout:fragment="body">
+  <div class="text-center mb-5 mt-5">
+    <h1 class="fw-bolder">Enrollee List</h1>
+    <p class="lead fw-normal text-muted mb-0">Christ's wisdom christian church</p>
+  </div>
+  <div class="container">
+    <div  class="row">
+      <div th:each="enrolleeList: ${enrolleeList}" class="col-lg-6 mb-3">
+        <div class="card mb-4">
+          <div class="card-body">
+            <img class="img-fluid rounded-3 mb-3" src="List.png" alt="..." />
+
+            <p class="text-muted">from:</p>
+            <p th:text="${enrolleeList.email}" ></p>
+            <div>
+              <a class="btn btn-primary" th:href="@{/enrolleeList/{enrolleeId}/edit(enrolleeId=${enrolleeList.id})}">Edit</a>
+              <a class="btn btn-danger" th:href="@{/enrolleeList/{enrolleeId}/delete(enrolleeId=${enrolleeList.id})}">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="hhtp://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+
+<section layout:fragment="body" class="bg-light py-5 border-bottom">
+  <div class="container px-5 my-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bolder">You're application status</h2>
+      <p class="lead mb-0">Proverbs 22:6, “Train up a child in the way he should go and when he is old he will not depart from it”.</p>
+    </div>
+    <div class="text-center mb-2">
+      <p class="lead mb-0">Note: Kindly wait for your application to process</p>
+    </div>
+
+    <div th:each="enroll: ${enroll}" class="row gx-5 justify-content-center">
+      <!-- Pricing card free-->
+      <div  class="c-lg-6 col-xl-4 mb-3">
+        <div th:if="${user.id} == ${enroll.enrolledBy.id}" class="card mb-5 mb-xl-0 text-center">
+          <div  class="card-body p-5">
+            <div class="small text-uppercase fw-bold text-muted"></div>
+            <div class="mb-3 justify-content-center">
+              <h2 th:text="${enroll.firstName} + ' ' + ${enroll.middleName} + ' ' + ${enroll.lastName}"class="fw-bolder"></h2>
+              <span class="text-muted"></span>
+            </div>
+            <img class="img-fluid rounded-3 mb-3" src="/kinder.png" alt="..." />
+
+            <div th:if="${enroll.status} == 'Pending'"class="d-grid"><button class="btn btn-outline-warning" th:text="${enroll.status}" disabled></button></div>
+            <div th:if="${enroll.status} == 'Received'"class="d-grid">
+              <button class="btn btn-outline-success mb-3" th:text="${enroll.status}" disabled></button>
+              <div class="card bg-info bg-opacity-25 mb-4">
+                <div class="card-body text-center">Your schedule</div>
+
+                <div class="card-body text-center" th:text="${enroll.schedule}"></div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                  <div class="card-body text-center"><span class="text-dark">Note: Please attend your schedule according to the dates above</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+</body>
+</html>

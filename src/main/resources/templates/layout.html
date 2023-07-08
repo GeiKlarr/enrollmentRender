@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="hhtp://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title layout:title-patter="@CONTENT_TITLE - LAYOUT_TITLE">Website</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="/loggoo.png" />
+
+    <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<nav class="navbar navbar-expand-lg navbar-light">
+ <div class="container px-3">
+    <a class="navbar-brand ps-2" href="#!">
+        <img src="/loggoo.png" alt="Custom Icon" class="mr-2 " width="24" height="24">
+        CHRIST'S WISDOM CHRISTIAN SCHOOL</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item btn btn-outline-secondary border-0"><a class="nav-link" aria-current="page" th:href="@{/Home}">Home</a></li>
+        <li class="nav-item btn btn-outline-secondary border-0"><a class="nav-link" href="https://www.facebook.com/pages/Christs-Wisdom-Christian-School/602776930245657">About</a></li>
+        <li class="nav-item btn btn-outline-secondary border-0"><a class="nav-link" th:href="@{/user/status}">Status</a></li>
+          <li class="nav-item dropdown btn btn-outline-secondary border-0">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Welcome</a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                  <li><a class="dropdown-item btn btn-outline-secondary" th:href="@{/user/enroll/select}">Enroll a student</a></li>
+                  <li><a class="dropdown-item btn btn-outline-secondary" th:href="@{/logout}">Logout</a></li>
+              </ul>
+          </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<body layout:fragment="body">
+</body>
+<footer class="py-5 bg-dark">
+  <div class="container px-5"><p class="m-0 text-center text-white">Christ's Wisdom Christian School &copy; Your Website 2023</p></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+</html>

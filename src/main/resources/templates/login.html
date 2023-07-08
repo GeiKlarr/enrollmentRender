@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="hhtp://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title layout:title-patter="@CONTENT_TITLE - LAYOUT_TITLE">Website</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<section class="bg-light py-5 border-bottom">
+  <div class="feature rounded-3 mb-3 text-center mt-2"><img src="/loggoo.png"></div>
+
+  <div class="container px-5 my-5 mb-5">
+    <div th:if="${param.error}" class="alert alert-danger">
+      Invalid username and password.
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success">
+      You have been logged out.</div>
+    <div th:if="${param.success}" class="alert alert-success">
+      Registration successfully.
+    </div>
+
+    <div class="row gx-5 justify-content-center">
+      <!-- Pricing card free-->
+      <div class="col-lg-6 col-xl-4">
+       <div class="card mb-5 mb-xl-0">
+          <div class="card-body p-5">
+            <div class="display-7 fw-bold text-muted d-flex justify-content-center mb-4">LOGIN</div>
+            <div class="mb-3">
+              <span class="text-muted"></span>
+            </div>
+            <form id="contactForm"  method="post" th:action="@{/login}" >
+
+              <div class="form-floating mb-3">
+                <input class="form-control"
+                       id="username"
+                       type="username"
+                       placeholder="Enter your name..."
+                       name="username"
+                />
+                <label for="username">username</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input class="form-control"
+                       id="password"
+                       type="password"
+                       placeholder="Enter your name..."
+                       name="password"
+                />
+                <label for="password">Password</label>
+              </div>
+              <!-- Submit Button-->
+              <a th:href="@{/register}" type="submit" class="link-opacity-75 mb-2" >Don't have an account? Register here.</a>
+              <div class="d-grid"><button class="btn btn-outline-primary" type="submit" value="Log in">Login</button></div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+<footer class="py-5 bg-dark">
+  <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+</html>

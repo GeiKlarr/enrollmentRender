@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="hhtp://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Business Frontpage - Start Bootstrap Template</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+<section layout:fragment="body" 34class="py-5">
+  <div class="container px-5 my-5">
+    <div class="text-center mb-5">
+      <h1 class="fw-bolder">ROSTER</h1>
+      <p class="lead fw-normal text-muted mb-0">Christ's wisdom christian church</p>
+    </div>
+    <div class="column gx-5">
+      <div class="col-lg-6 mb-3">
+        <div class="position-relative mb-3">
+          <img class="img-fluid rounded-3 mb-3" src="List.png" alt="..." />
+        </div>
+        <a text=""class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
+        <a class="btn btn-primary" href="@{/clubs/{clubId}(clubId=${club.id})}">View</a>
+        <a class="btn btn-primary" href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
