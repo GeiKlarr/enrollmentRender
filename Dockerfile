@@ -22,7 +22,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Copy the built JAR to the desired location
-COPY target/enrollment-0.0.1-SNAPSHOT.jar Enrollment.jar
+COPY --from=build /target/Enrollment-0.0.1-SNAPSHOT.jar Enrollment.jar
 
 # Expose the desired port
 EXPOSE 8080
