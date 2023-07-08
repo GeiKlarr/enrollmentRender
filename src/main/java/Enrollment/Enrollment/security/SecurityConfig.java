@@ -13,7 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig {
 
     private CustomUserDetailsService customUserDetailsService;
     private CustomUserDetails customUserDetails;
@@ -26,27 +26,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+@Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**", "/admin/enrolled").hasRole("ADMIN")
-                .anyRequest().permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .successHandler((request, response, authentication) -> {
-                    CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-                    String defaultUrl = customUserDetails.getDefaultUrl();
-                    response.sendRedirect(defaultUrl);
-                })
-                .loginProcessingUrl("/login")
-                .failureUrl("/login?error=true")
+                .antMatchers("/admin/**","/admin/enrolled").hasRole("ADMIN")
+                .anyRequest()
                 .permitAll()
                 .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .permitAll();
+                .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
+                        .loginPage("/login")
+                        .successHandler((request, response, authentication) -> {
+                            CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+                            String defaultUrl = customUserDetails.getDefaultUrl();
+                            response.sendRedirect(defaultUrl);
+                        })
+                        .loginProcessingUrl("/login")
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                ).logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .permitAll()
+                );
+
+        return http.build();
     }
 
     public void configure(AuthenticationManagerBuilder builder)throws Exception{
