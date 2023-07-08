@@ -22,10 +22,10 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Copy the built JAR to the desired location
-COPY target/Enrollment-0.0.1-SNAPSHOT.jar Enrollment.jar
+COPY target/demo-0.0.1-SNAPSHOT.jar demo.jar
 
 # Expose the desired port
 EXPOSE 8080
 
 # Set the entrypoint for the container
-ENTRYPOINT ["java", "-jar", "Enrollment.jar"]
+ENTRYPOINT ["java", "-jar", "demo.jar"]
