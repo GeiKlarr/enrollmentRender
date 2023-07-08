@@ -3,7 +3,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY target/*.jar app.jar
+COPY target/Enrollment-0.0.1-SNAPSHOT.jar.original app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar", "Enrollment.jar"]
 
