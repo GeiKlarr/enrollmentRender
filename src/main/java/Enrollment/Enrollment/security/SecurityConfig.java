@@ -13,7 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     private CustomUserDetailsService customUserDetailsService;
     private CustomUserDetails customUserDetails;
@@ -42,7 +42,7 @@ public class SecurityConfig {
                             String defaultUrl = customUserDetails.getDefaultUrl();
                             response.sendRedirect(defaultUrl);
                         })
-                        .loginProcessingUrl("/springapplication-render.onrender.com/login")
+                        .loginProcessingUrl("/login")
                         .failureUrl("/login?error=true")
                         .permitAll()
                 ).logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
