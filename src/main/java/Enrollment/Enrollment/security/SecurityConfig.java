@@ -42,7 +42,7 @@ public class SecurityConfig {
                             String defaultUrl = customUserDetails.getDefaultUrl();
                             response.sendRedirect(defaultUrl);
                         })
-                        .loginProcessingUrl("/login")
+                        .loginProcessingUrl("/springapplication-render.onrender.com/login")
                         .failureUrl("/login?error=true")
                         .permitAll()
                 ).logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
