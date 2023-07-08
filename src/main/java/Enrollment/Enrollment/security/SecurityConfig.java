@@ -26,31 +26,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             return new BCryptPasswordEncoder();
     }
 
-@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**","/admin/enrolled").hasRole("ADMIN")
-                .anyRequest()
+                .antMatchers("/admin/**", "/admin/enrolled").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .successHandler((request, response, authentication) -> {
+                    CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+                    String defaultUrl = customUserDetails.getDefaultUrl();
+                    response.sendRedirect(defaultUrl);
+                })
+                .loginProcessingUrl("/login")
+                .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
-                .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
-                        .loginPage("/login")
-                        .successHandler((request, response, authentication) -> {
-                            CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-                            String defaultUrl = customUserDetails.getDefaultUrl();
-                            response.sendRedirect(defaultUrl);
-                        })
-                        .loginProcessingUrl("/login")
-                        .failureUrl("/login?error=true")
-                        .permitAll()
-                ).logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .permitAll()
-                );
-
-        return http.build();
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .permitAll();
     }
 
     public void configure(AuthenticationManagerBuilder builder)throws Exception{
